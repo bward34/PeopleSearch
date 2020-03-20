@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PeopleSearch.Models.People>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <div style="height:50px; width:50px">
+                    <img src=@item.PictureUrl width="100%" alt="Profile Picture">
+                </div>
+            </td>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.Age
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                @item.Interest
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+}

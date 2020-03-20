@@ -1,0 +1,122 @@
+@model PeopleSearch.Models.People
+
+@{
+    ViewBag.Title = "People List";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $("#Loader").hide();
+
+    $("#SearchBtn").click(function () {
+        $("#Loader").show();
+        $("table").hide();
+        var delay = false;
+
+        //Check if simulate slow search is enabled.
+        if ($('#Checkbox').is(":checked")) {
+            delay = true;
+        }
+        var field = $("#SearchField").val();
+        $.ajax({
+            type: "POST",
+            url: "/People/SearchList?searchName=" + field + "&delay=" + delay,
+            contentType: "html",
+            success: function (response) {
+                $("#Loader").hide();
+                $("#peopleRow").html(response);
+                $("table").show();
+
+            }
+        });
+    });
+    });</script>
+
+<h1>People List</h1>
+
+<p>
+    <a asp-action="Create">Add New Person</a>
+</p>
+
+    <p>
+        Search People: <input id="SearchField" type="text" name="SearchName">
+        <button id="SearchBtn">Search</button>
+    </p>
+<p>
+    Simulate Slow Search: 
+    <label class="switch">
+        <input id="Checkbox" type="checkbox">
+    </label>
+</p>
+
+<div id="Loader">
+    <img id="editableimage2" width="150" height="150" style="display:block; margin-left:auto; margin-right:auto; margin-top:100px" src="http://cdn.lowgif.com/full/d9675675623d5f27-loading-gif-transparent-background-loading-gif.gif" border="0" alt="Loading Gif Transparent Background Loading Gif" />
+    <h2 style="text-align:center">Searching...</h2>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Interest
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="peopleRow">
+        @if (ViewBag.People != null)
+        {
+            @foreach (var item in ViewBag.People)
+            {
+                <tr>
+                    <td>
+                        <div style="height:50px; width:50px">
+                            <img src=@item.PictureUrl width="100%" alt="Profile Picture">
+                        </div>
+                    </td>
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.LastName
+                    </td>
+                    <td>
+                        @item.Age
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        @item.Interest
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
