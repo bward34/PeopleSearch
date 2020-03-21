@@ -18,7 +18,10 @@ namespace PeopleSearch.Controllers
             _context = context;
         }
 
-        // GET: People
+        /// <summary>
+        /// Gets the list of people when navigation to the index.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             List<People> peoples = await _context.People.ToListAsync();
@@ -26,9 +29,16 @@ namespace PeopleSearch.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Called when searchng the list of people.
+        /// </summary>
+        /// <param name="searchName">The name the user is searching for.</param>
+        /// <param name="delay">Set to true if user wants slow search</param>
+        /// <returns>The list of people based on the searchName param</returns>
         [HttpPost]
         public async Task<IActionResult> SearchList(string searchName, bool delay)
         {
+            //If delay is true, simulates a slow search
             if(delay)
             {
                 await Task.Delay(5000);
@@ -49,7 +59,11 @@ namespace PeopleSearch.Controllers
             return PartialView("SearchPartial", peoples);
         }
 
-        // GET: People/Details/5
+        /// <summary>
+        /// Gets details of a individual person.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -67,15 +81,21 @@ namespace PeopleSearch.Controllers
             return View(people);
         }
 
-        // GET: People/Create
+        /// <summary>
+        /// Called when creating a new person.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Saves a new person and returned the view with a
+        /// newly created person.
+        /// </summary>
+        /// <param name="people"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Age,Email,Address,Interest,PictureUrl")] People people)
@@ -89,7 +109,11 @@ namespace PeopleSearch.Controllers
             return View(people);
         }
 
-        // GET: People/Edit/5
+        /// <summary>
+        /// Directs to the edit page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,9 +129,12 @@ namespace PeopleSearch.Controllers
             return View(people);
         }
 
-        // POST: People/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Saves the editied person.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="people"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Age,Email,Address,Interest,PictureUrl")] People people)
@@ -140,7 +167,11 @@ namespace PeopleSearch.Controllers
             return View(people);
         }
 
-        // GET: People/Delete/5
+        /// <summary>
+        /// Deletes a person from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,17 +187,6 @@ namespace PeopleSearch.Controllers
             }
 
             people = await _context.People.FindAsync(id);
-            _context.People.Remove(people);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        // POST: People/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var people = await _context.People.FindAsync(id);
             _context.People.Remove(people);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

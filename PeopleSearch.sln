@@ -1,7 +1,9 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch", "PeopleSearch\PeopleSearch.csproj", "{938CB502-58FD-4A18-82A7-121DDA2122B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch.Test", "PeopleSearch.Test\PeopleSearch.Test.csproj", "{9CCA79FB-1CED-4BA2-9F8C-B2528C46658F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +15,9 @@ Global
 		{938CB502-58FD-4A18-82A7-121DDA2122B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{938CB502-58FD-4A18-82A7-121DDA2122B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{938CB502-58FD-4A18-82A7-121DDA2122B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CCA79FB-1CED-4BA2-9F8C-B2528C46658F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CCA79FB-1CED-4BA2-9F8C-B2528C46658F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CCA79FB-1CED-4BA2-9F8C-B2528C46658F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CCA79FB-1CED-4BA2-9F8C-B2528C46658F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

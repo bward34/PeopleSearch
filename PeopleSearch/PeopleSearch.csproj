@@ -31,6 +31,7 @@
     <Content Remove="Views\People\Delete.cshtml" />
     <Content Remove="Views\People\SlowIndex.cshtml" />
     <Content Remove="Views\People\SlowIndex.cshtml" />
+    <Content Remove="Views\Home\Privacy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="People.db" />
