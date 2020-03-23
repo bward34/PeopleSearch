@@ -2,7 +2,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the People Search Application</h1>
+    </div>
+    <div>
+        <p>
+            The People Search Application is a .NET Core MVC application which uses Razor, Javascript, and jQuery to allow users to the ability to add,
+            edit, or delete a person as well as search for a person using that person's first name, last name, or both. To search for a person click the
+            <a asp-area="" asp-controller="People" asp-action="Index">Search</a> button in the tab above. A user searching can also simulate a "slow" search
+            when searching by checking "Simulate Slow Search" below the search bar.
+        </p>
+        <p>
+            Unit tests for this application can be found in the PeopleSearch.Test project. In the test file PeopleSearchTest.cs, there are 5 test each testing the
+            functionality and error handling of both the Home controller and People controller in the People Search project.
+        </p>
+    </div>
+
